@@ -100,3 +100,16 @@ static func _node_children_to_string(node: Node, all_descendants := false, inclu
 		else:
 			result += "\t".repeat(depth + 1) + child.to_string() + "\n"
 	return result
+
+
+static func get_git_commit_id(dir: String = "") -> String:
+	var args := ["rev-parse", "HEAD"]
+	if not dir.is_empty():
+		args.insert(0, "--git-dir=" + ProjectSettings.globalize_path(dir) + ".git")
+
+	var output := []
+	var response = OS.execute("git", args, output)
+	if response == 0:  # Command executed successfully
+		return output[0].strip_edges()  # Remove extra whitespace or newlines
+	else:
+		return "Unknown Commit"  # Fallback if Git isn't available or fails
