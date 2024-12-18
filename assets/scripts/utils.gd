@@ -102,7 +102,7 @@ static func _node_children_to_string(node: Node, all_descendants := false, inclu
 	return result
 
 
-static func get_git_commit_id(dir: String = "") -> String:
+static func get_git_commit_id(dir: String = "res://") -> String:
 	var args := ["rev-parse", "HEAD"]
 	if not dir.is_empty():
 		args.insert(0, "--git-dir=" + ProjectSettings.globalize_path(dir) + ".git")
