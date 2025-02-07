@@ -35,7 +35,7 @@ static func get_paths_in_project(ext: String, omit := OMIT_FILE_SEARCH_DEFAULT, 
 
 static func get_scripts_in_project(type: String, omit := OMIT_FILE_SEARCH_DEFAULT, start_path := "res://") -> Array[Script]:
 	if not OS.is_debug_build():
-		print("Attempting to access scripts directly in non-debug build. This is likely to cause issues unless GDScript Export Mode is set to Text (easier debugging). Whatever you are doing, use an alternative method for release.")
+		printerr("Attempting to access scripts directly in non-debug build. This is likely to cause issues unless GDScript Export Mode is set to Text (easier debugging). Whatever you are doing, use an alternative method for release.")
 
 	var result : Array[Script]
 	var paths := Utils.get_paths_in_project(".gd", omit, start_path)
