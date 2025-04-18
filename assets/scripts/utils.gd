@@ -23,10 +23,10 @@ static func get_paths_in_project(ext: String, omit := OMIT_FILE_SEARCH_DEFAULT, 
 	dir.list_dir_begin()
 	var file_name := dir.get_next()
 	while file_name != "":
-		var next_path := start_path + file_name
+		var next_path := start_path.path_join(file_name)
 		if dir.current_is_dir():
 			if not omit.has(file_name):
-				result.append_array(get_paths_in_project(ext, omit, next_path + "/"))
+				result.append_array(get_paths_in_project(ext, omit, next_path))
 		elif file_name.ends_with(ext):
 			result.push_back(next_path)
 		file_name = dir.get_next()
